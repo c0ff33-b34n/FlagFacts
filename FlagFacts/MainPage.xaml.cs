@@ -32,8 +32,8 @@ namespace FlagFacts
         private void InitializeData()
         {
             country.ItemsSource = (IList) repository.Countries;
-            country.SelectedItem = CurrentFlag.Country;
-            country.SelectedIndexChanged += (s, e) => CurrentFlag.Country = repository.Countries[country.SelectedIndex];
+            country.BindingContext = CurrentFlag;
+            country.SetBinding(Picker.SelectedItemProperty, new Binding(nameof(CurrentFlag.Country)));
 
             flagImage.Source = CurrentFlag.GetImageSource();
 
